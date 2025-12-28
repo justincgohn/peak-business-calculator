@@ -59,6 +59,16 @@ Peak Business Calculator/
 
 ## Change Log
 
+### December 27, 2025 — Bug fix: FIPS code mismatch
+
+**Issue:** "No data available" error for valid counties like Los Angeles.
+
+**Root cause:** county_list.json (from Migration Tool) uses underscored FIPS codes (`06_037`) but cbp_data.json uses plain FIPS (`06037`). Also, county names already include state ("Los Angeles County, CA") but display code was appending ", CA" again.
+
+**Fix:** Added `normalizeFips()` helper to strip underscores. Fixed display to use name directly without appending state.
+
+---
+
 ### December 27, 2025 — v1.0 Complete
 
 - Downloaded and processed Census CBP data (2012-2023)
