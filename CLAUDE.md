@@ -15,10 +15,13 @@
 
 ## Status
 
-**Phase 1 (Data):** In progress
-**Phase 2 (UI):** Not started
-**Phase 3 (Logic):** Not started
-**Phase 4 (Deploy):** Not started
+**Phase 1 (Data):** Complete
+**Phase 2 (UI):** Complete
+**Phase 3 (Logic):** Complete
+**Phase 4 (Deploy):** Complete
+
+**Live URL:** https://justincgohn.github.io/peak-business-calculator/
+**Repo:** https://github.com/justincgohn/peak-business-calculator
 
 ---
 
@@ -56,9 +59,13 @@ Peak Business Calculator/
 
 ## Change Log
 
-### December 27, 2025 — Project created
+### December 27, 2025 — v1.0 Complete
 
-Initial setup following Migration Flow Tool pattern.
+- Downloaded and processed Census CBP data (2012-2023)
+- Built web app with Chart.js visualization
+- 8 curated industries, 3,254 counties
+- Deployed to GitHub Pages
+- Added to justingohn.com builds page
 
 ---
 
