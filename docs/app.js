@@ -8,7 +8,7 @@ const INDUSTRY_NAMES = {
     '5221': 'Banks',
     '4511': 'Sporting goods stores',
     '4512': 'Book stores',
-    '5312': 'Real estate agents',
+    '5312': 'Real estate brokerage offices',
     '8121': 'Personal care services'
 };
 
