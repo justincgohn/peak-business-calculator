@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak Business Calculator</title>
+    <meta name="description" content="Discover when industries peaked in any US county. Explore establishment trends for restaurants, law firms, banks, and more.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Peak Business Calculator</h1>
+            <p class="subtitle">When did <span class="highlight">[industry]</span> peak in <span class="highlight">[county]</span>?</p>
+        </header>
+
+        <main>
+            <div class="search-section">
+                <div class="input-group">
+                    <label for="industry-select">Industry</label>
+                    <select id="industry-select">
+                        <option value="">Select an industry...</option>
+                        <option value="5411">Legal services</option>
+                        <option value="7225">Restaurants</option>
+                        <option value="4481">Clothing stores</option>
+                        <option value="5221">Banks</option>
+                        <option value="4511">Sporting goods stores</option>
+                        <option value="4512">Book stores</option>
+                        <option value="5312">Real estate agents</option>
+                        <option value="8121">Personal care services</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="county-search">County</label>
+                    <input type="text" id="county-search" placeholder="Type a county name..." autocomplete="off">
+                    <div id="autocomplete-list" class="autocomplete-items"></div>
+                </div>
+
+                <button id="search-btn" class="search-button">Find Peak</button>
+            </div>
+
+            <div class="examples">
+                <span>Try:</span>
+                <button class="example-btn" data-industry="5411" data-county="42101">Law firms in Philadelphia</button>
+                <button class="example-btn" data-industry="7225" data-county="06037">Restaurants in Los Angeles</button>
+                <button class="example-btn" data-industry="4512" data-county="36061">Book stores in Manhattan</button>
+            </div>
+
+            <div id="results" class="results hidden">
+                <div id="headline" class="headline"></div>
+                <div class="chart-container">
+                    <canvas id="trend-chart"></canvas>
+                </div>
+                <div id="data-note" class="data-note"></div>
+            </div>
+
+            <div id="error" class="error hidden"></div>
+        </main>
+
+        <footer>
+            <p>Data source: <a href="https://www.census.gov/programs-surveys/cbp.html" target="_blank">Census Bureau County Business Patterns</a> (2012-2023)</p>
+            <p><a href="https://justingohn.com" target="_blank">justingohn.com</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

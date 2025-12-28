@@ -1,0 +1,9 @@
+# Raw data files (large, can be regenerated)
+data/raw/
+
+# OS files
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
