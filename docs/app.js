@@ -18,6 +18,11 @@ let countyList = null;
 let selectedCountyFips = null;
 let trendChart = null;
 
+// Helper to normalize FIPS codes (remove underscores)
+function normalizeFips(fips) {
+    return fips ? fips.replace('_', '') : fips;
+}
+
 // DOM Elements
 const industrySelect = document.getElementById('industry-select');
 const countySearch = document.getElementById('county-search');
@@ -92,9 +97,9 @@ function setupEventListeners() {
             selectedCountyFips = county;
 
             // Find and display county name
-            const countyInfo = countyList.find(c => c.fips === county);
+            const countyInfo = countyList.find(c => normalizeFips(c.fips) === county);
             if (countyInfo) {
-                countySearch.value = `${countyInfo.name}, ${countyInfo.state}`;
+                countySearch.value = countyInfo.name; // name already includes state
             }
 
             handleSearch();
@@ -130,11 +135,10 @@ function showAutocomplete(query) {
         return;
     }
 
-    // Build autocomplete HTML
+    // Build autocomplete HTML (name already includes state)
     autocompleteList.innerHTML = matches.map((c, i) => `
-        <div class="autocomplete-item" data-fips="${c.fips}" data-index="${i}">
+        <div class="autocomplete-item" data-fips="${normalizeFips(c.fips)}" data-index="${i}">
             <span class="county-name">${c.name}</span>
-            <span class="state-name">, ${c.state}</span>
         </div>
     `).join('');
 
@@ -142,9 +146,9 @@ function showAutocomplete(query) {
     autocompleteList.querySelectorAll('.autocomplete-item').forEach(item => {
         item.addEventListener('click', () => {
             const fips = item.dataset.fips;
-            const county = countyList.find(c => c.fips === fips);
+            const county = countyList.find(c => normalizeFips(c.fips) === fips);
             if (county) {
-                countySearch.value = `${county.name}, ${county.state}`;
+                countySearch.value = county.name; // name already includes state
                 selectedCountyFips = fips;
             }
             autocompleteList.classList.remove('active');
@@ -191,13 +195,11 @@ function handleSearch() {
     }
 
     if (!selectedCountyFips) {
-        // Try to find county from text
+        // Try to find county from text (name already includes state)
         const searchText = countySearch.value.trim().toLowerCase();
-        const match = countyList.find(c =>
-            `${c.name}, ${c.state}`.toLowerCase() === searchText
-        );
+        const match = countyList.find(c => c.name.toLowerCase() === searchText);
         if (match) {
-            selectedCountyFips = match.fips;
+            selectedCountyFips = normalizeFips(match.fips);
         } else {
             showError('Please select a county from the dropdown.');
             return;
